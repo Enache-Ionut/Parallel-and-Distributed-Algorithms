@@ -27,7 +27,7 @@ int main()
 		cout << "Second Matrix : " << endl;
 		DisplayMatrix(secondMatrix);
 		cout << endl << endl;
-
+		
 		cout << "Result Matrix : " << endl;
 		DisplayMatrix(resultMatrix);
 	}
@@ -62,14 +62,19 @@ vector<vector<int>> MultiplyMatrices(vector<vector<int>> firstMatrix, vector<vec
 
 	vector<vector<int>> resultMatrix(numberOfRows, vector<int>(numberOfColumns, 0));
 	
-	omp_set_num_threads(4);
-#pragma omp parallel for default(none) shared( firstMatrix, secondMatrix, resultMatrix )
+	int row = 0;
 
-	for ( int row = 0; row < numberOfRows; ++row)
-		for ( int col = 0; col < numberOfColumns; ++col)
-			for ( int k = 0; k < numberOfColumns; ++k)
+	omp_set_num_threads(4);
+#pragma omp parallel for default(none) shared( firstMatrix, secondMatrix, resultMatrix ) //private(row)
+
+	for ( row = 0; row < numberOfRows; ++row)
+	{
+		//cout << "Row : " << row << " - Thread ID : " << omp_get_thread_num() << endl;
+		for (int col = 0; col < numberOfColumns; ++col)
+			for (int k = 0; k < numberOfColumns; ++k)
 				resultMatrix[row][col] += firstMatrix[row][k] * secondMatrix[k][col];
-	
+	}
+		
 	return resultMatrix;
 }
 
