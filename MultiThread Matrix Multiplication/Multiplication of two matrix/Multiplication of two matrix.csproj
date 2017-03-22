@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Element.cs" />
     <Compile Include="IGenerator.cs" />
     <Compile Include="IMatricesMultiplier.cs" />
     <Compile Include="Matrix2D.cs" />
