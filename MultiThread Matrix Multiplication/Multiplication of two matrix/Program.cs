@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 
 namespace Multiplication_of_two_matrix
 {
+    public delegate void MyDelegate(string s);
+
     class Program
     {
         static void Main(string[] args)

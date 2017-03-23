@@ -10,6 +10,7 @@ namespace Multiplication_of_two_matrix
 {
     public class MatricesMultiplier : IMatricesMultiplier
     {
+        //private MyThreadPool threadPool = new MyThreadPool(4);
 
         public int[,] MultiThreadMultiplicationParallelFor(int[,] firstMatrix, int[,] secondMatrix)
         {
@@ -71,6 +72,38 @@ namespace Multiplication_of_two_matrix
 
             return resultMatrix;
         }
+
+
+        public void Multiply(int[,] resultMatrix, int[,] firstMatrix, int[,] secondMatrix, int row, int numberOfColumns)
+        {
+            for (int col = 0; col < numberOfColumns; ++col)
+                for (int k = 0; k < numberOfColumns; ++k)
+                    resultMatrix[row, col] += firstMatrix[row, k] * secondMatrix[k, col];
+        }
+
+
+        public int[,] MultiThreadMultiplicationVar2(int[,] firstMatrix, int[,] secondMatrix)
+        {
+            if (firstMatrix.GetLength(1) != secondMatrix.GetLength(0))
+                throw new Exception("You can not multiply this matices !");
+
+            int numberOfRows = firstMatrix.GetLength(0);
+            int numberOfColumns = secondMatrix.GetLength(1);
+            int[,] resultMatrix = new int[numberOfRows, numberOfColumns];
+
+            Thread[,] th = new Thread[numberOfRows, numberOfColumns];
+
+
+            for (int row = 0; row < numberOfRows; ++row)
+            {
+               // MyDelegate myDel = new MyDelegate("Multiply");
+
+            }
+               
+
+            return resultMatrix;
+        }
+
 
         public int[,] SingleThreadMultiplication(int[,] firstMatrix, int[,] secondMatrix)
         {

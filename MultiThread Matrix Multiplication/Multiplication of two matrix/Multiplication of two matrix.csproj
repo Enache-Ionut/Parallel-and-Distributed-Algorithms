@@ -49,6 +49,7 @@
     <Compile Include="Matrix2D.cs" />
     <Compile Include="MatrixGenerator.cs" />
     <Compile Include="MatricesMultiplier.cs" />
+    <Compile Include="MyThreadPool.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
