@@ -7,7 +7,7 @@ void PrintAllPrimeNumbers(int, int);
 
 int main(int argc, char *argv[])
 {
-	const int LIMIT = 100;
+	int LIMIT = 100;
 	int numberOfProcesses;
 	int processRank;
 	int error;
@@ -17,8 +17,12 @@ int main(int argc, char *argv[])
 	if (error != MPI_SUCCESS) {
 		cout << "Error starting MPI program. Terminating.\n";
 		MPI_Abort(MPI_COMM_WORLD, error);
-	}
+	}
+
 	MPI_Comm_size(MPI_COMM_WORLD, &numberOfProcesses);
+
+	MPI_Bcast(&LIMIT, 1, MPI_INT, 0, MPI_COMM_WORLD);
+
 	length = LIMIT / numberOfProcesses;
 
 	MPI_Comm_rank(MPI_COMM_WORLD, &processRank);
